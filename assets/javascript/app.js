@@ -20,7 +20,7 @@ function displayList() {
 }
 
 $('#search-btn').on('click', function(e) {
-    e.preventDefault();
+    event.preventDefault();
     // Get value from text input
     let input = $('#search-area').val().trim();
     // Add input to topics array
