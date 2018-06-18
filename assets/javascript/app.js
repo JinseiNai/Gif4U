@@ -37,6 +37,7 @@ $('.list-here').on('click', '.searchItem', function(e){
     $('.gif-here').empty();
     // Create variable for target's value
     let search = $(e.target).val();
+    
     // Set query URL
     let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=d7bvrndB8ll6gXJCH740FIlKYVRvF56Q&q=${search}&limit=10&offset=0&lang=en`;
 
@@ -58,11 +59,12 @@ $('.list-here').on('click', '.searchItem', function(e){
             // Create a p tag to display rating
             let p = $('<p>').text("Rating: " + rating);
 
-            // Create an image tag
-            let gifImg = $('<img>');
+            // Create an image tag with class 'gif' and 'still'
+            let gifImg = $('<img>').addClass('gif still');
 
-            // Give image tag an src attribute linked to result 
-            gifImg.attr("src", result[i].images.fixed_height.url);
+            // Give image tag an src attribute linked to result
+            // Get the still image of the gif 
+            gifImg.attr("src", result[i].images.fixed_height_still.url);
 
             // Append the paragraph and image to gifDiv
             gifDiv.append(p);
@@ -73,6 +75,26 @@ $('.list-here').on('click', '.searchItem', function(e){
         };
     });
 });
+
+// When image is clicked, play gif
+$('.gif-here').on('click', '.gif', function(e) {
+    // Create variable to hold this gif src
+    let gif = $(this).attr("src");
+
+    // If image has class 'still' replace src
+    if ($(this).hasClass("still")) {
+        $(this).attr('src', gif.replace("_s.gif", ".gif"));
+        $(this).removeClass('still');
+
+        // If image has no class 'still', add it
+    } else {
+        $(this).addClass('still')
+        $(this).attr('src', gif.replace(".gif", "_s.gif"));
+    }
+    
+
+
+})
 
 $(document).ready(function() {
     displayList();
