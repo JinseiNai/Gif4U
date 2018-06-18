@@ -4,6 +4,8 @@ let topics = ["basketball", "football", "soccer", "baseball", "badminton", "tenn
 
 // Create a function to display the list of searchable buttons
 function displayList() {
+    // Empty '.list-here'
+    $('.list-here').empty();
     for (i = 0; i < topics.length; i++) {
         // Assign variable to search item
         let item = topics[i];
@@ -17,12 +19,24 @@ function displayList() {
     }
 }
 
+$('#search-btn').on('click', function(e) {
+    e.preventDefault();
+    // Get value from text input
+    let input = $('#search-area').val().trim();
+    // Add input to topics array
+    topics.push(input);
+    // Update displayList
+    displayList();
+    $('#search-area').val("");
+    
+});
+
+// On click function for when a list item is clicked
 $('.list-here').on('click', '.searchItem', function(e){
     // Empty '.gif-here' of previous items
     $('.gif-here').empty();
     // Create variable for target's value
     let search = $(e.target).val();
-    console.log(search);
     // Set query URL
     let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=d7bvrndB8ll6gXJCH740FIlKYVRvF56Q&q=${search}&limit=10&offset=0&lang=en`;
 
@@ -33,7 +47,6 @@ $('.list-here').on('click', '.searchItem', function(e){
     }).then(function(response) {
         // Create variable to hold response
         let result = response.data;
-        console.log(result);
 
         // Loop through each item from result
         for (i = 0; i < result.length; i++) {
@@ -41,7 +54,6 @@ $('.list-here').on('click', '.searchItem', function(e){
             let gifDiv = $('<div class=item>');
             // Create variable to store result's rating
             let rating = result[i].rating;
-            console.log(rating);
 
             // Create a p tag to display rating
             let p = $('<p>').text("Rating: " + rating);
@@ -62,4 +74,6 @@ $('.list-here').on('click', '.searchItem', function(e){
     });
 });
 
-displayList();
+$(document).ready(function() {
+    displayList();
+})

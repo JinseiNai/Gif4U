@@ -1,3 +1,7 @@
+.row {
+    margin: 0;
+}
+
 .list-here {
     margin-right: 10px;
     margin-left: 10px;
@@ -7,3 +11,4 @@
     display: inline-block;
     margin: 10px;
 }
+
