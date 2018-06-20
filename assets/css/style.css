@@ -99,3 +99,7 @@ hr {
     width: 100%;
     height: 50px;
 }
+
+.icon {
+    z-index: 99;
+}

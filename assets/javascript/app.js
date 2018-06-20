@@ -57,7 +57,7 @@ $('.list-here').on('click', '.searchItem', function(e){
             let rating = result[i].rating;
 
             // Create a p tag to display rating
-            let p = $('<p>').text("Rating: " + rating);
+            let p = $('<p class=rating>').text("Rating: " + rating);
 
             // Create an image tag with class 'gif' and 'still'
             let gifImg = $('<img>').addClass('gif still');
@@ -91,11 +91,22 @@ $('.gif-here').on('click', '.gif', function(e) {
         $(this).addClass('still')
         $(this).attr('src', gif.replace(".gif", "_s.gif"));
     }
-    
+})
 
-
+// On gif hover, add layer
+$('.gif-here').on('mouseenter', '.gif', function() {
+    $(this).css('opacity', '0.8');
+    let iconDiv = $('<div class=icon>');
+    iconDiv.html("<i class='fas fa-heart'></i>")
+    $('.rating').append(iconDiv); 
+});
+$('.gif-here').on('mouseleave', '.gif', function() {
+    $(this).css('opacity', '1');
+    $('.rating').removeClass('icon');
 })
 
 $(document).ready(function() {
     displayList();
+    
+    
 })
