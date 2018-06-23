@@ -93,17 +93,17 @@ $('.gif-here').on('click', '.gif', function(e) {
     }
 })
 
-// On gif hover, add layer
-$('.gif-here').on('mouseenter', '.gif', function() {
-    $(this).css('opacity', '0.8');
-    let iconDiv = $('<div class=icon>');
-    iconDiv.html("<i class='fas fa-heart'></i>")
-    $('.rating').append(iconDiv); 
-});
-$('.gif-here').on('mouseleave', '.gif', function() {
-    $(this).css('opacity', '1');
-    $('.rating').removeClass('icon');
-})
+// // On gif hover, add layer
+// $('.gif-here').on('mouseenter', '.gif', function() {
+//     $(this).css('opacity', '0.8');
+//     let iconDiv = $('<div class=icon>');
+//     iconDiv.html("<i class='fas fa-heart'></i>")
+//     $('.rating').append(iconDiv); 
+// });
+// $('.gif-here').on('mouseleave', '.gif', function() {
+//     $(this).css('opacity', '1');
+//     $('.rating').removeClass('icon');
+// })
 
 $(document).ready(function() {
     displayList();
